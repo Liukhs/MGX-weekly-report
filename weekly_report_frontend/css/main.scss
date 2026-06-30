@@ -1,0 +1,366 @@
+// ==========================================================================
+// VARIABILI E CONFIGURAZIONE (Design System)
+// ==========================================================================
+$mx-bg-dark: #0f172a;
+$mx-card-bg: #1e293b;
+$mx-card-border: rgba(255, 255, 255, 0.08);
+$mx-input-bg: rgba(15, 23, 42, 0.6);
+
+$mx-accent-lightblue: #00f0ff;
+$mx-accent-purple: #9333ea;
+$mx-accent-green: #10b981;
+$mx-accent-red: #ef4444;
+
+$mx-text-main: #f8fafc;
+$mx-text-muted: #94a3b8;
+
+$mx-radius: 12px;
+$mx-transition: all 0.25s ease;
+
+// Reset di base
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background-color: $mx-bg-dark;
+    color: $mx-text-main;
+    min-height: 100vh;
+    overflow-x: hidden;
+    
+    // Effetto radiale sfumato sullo sfondo per dare profondità
+    background-image: 
+        radial-gradient(circle at 80% 20%, rgba($mx-accent-purple, 0.15) 0%, transparent 50%), 
+        radial-gradient(circle at 20% 70%, rgba($mx-accent-lightblue, 0.08) 0%, transparent 50%);
+    background-attachment: fixed;
+}
+
+// ==========================================================================
+// CONTENITORI MACRO
+// ==========================================================================
+.app-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; // Permette alla pagina di allungarsi se ci sono molti report
+    padding: 40px 20px;
+}
+
+// Blocco per centrare il pannello di login a metà schermo
+.auth-panel {
+    margin-top: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+// ==========================================================================
+// BLOCCO: AUTH-CARD (Form di Login)
+// ==========================================================================
+.auth-card {
+    background-color: $mx-card-bg;
+    border: 1px solid $mx-card-border;
+    border-radius: $mx-radius;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+
+    &__title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 28px;
+        text-align: center;
+        background: linear-gradient(to right, $mx-accent-lightblue, $mx-accent-purple);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &__field {
+        margin-bottom: 20px;
+    }
+
+    &__label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: $mx-text-muted;
+        margin-bottom: 8px;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 14px 16px;
+        background-color: $mx-input-bg;
+        border: 1px solid $mx-card-border;
+        border-radius: 8px;
+        color: $mx-text-main;
+        font-size: 1rem;
+        transition: $mx-transition;
+
+        &:focus {
+            outline: none;
+            border-color: $mx-accent-lightblue;
+            box-shadow: 0 0 0 2px rgba($mx-accent-lightblue, 0.2);
+        }
+    }
+
+    &__error {
+        background-color: rgba($mx-accent-red, 0.1);
+        border: 1px solid rgba($mx-accent-red, 0.2);
+        color: #fca5a5;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    &__button {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, $mx-accent-purple, rgba($mx-accent-purple, 0.8));
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $mx-transition;
+
+        &:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+}
+
+// ==========================================================================
+// BLOCCO: WORKSPACE (Pannello Principale Post-Login)
+// ==========================================================================
+.workspace {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 24px;
+        border-bottom: 1px solid $mx-card-border;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 600;
+        
+        span {
+            color: $mx-accent-lightblue;
+        }
+    }
+
+    &__logout-btn {
+        padding: 8px 16px;
+        background-color: transparent;
+        border: 1px solid rgba($mx-text-muted, 0.4);
+        color: $mx-text-muted;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: $mx-transition;
+
+        &:hover {
+            border-color: $mx-accent-red;
+            color: $mx-accent-red;
+            background-color: rgba($mx-accent-red, 0.05);
+        }
+    }
+}
+
+// ==========================================================================
+// BLOCCO: REPORT-CARD (Schermata Inserimento Dipendente)
+// ==========================================================================
+.report-card {
+    background-color: $mx-card-bg;
+    border: 1px solid $mx-card-border;
+    border-radius: $mx-radius;
+    padding: 32px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+
+    &__subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+        color: $mx-text-main;
+    }
+
+    &__input-wrapper {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    &__input {
+        flex: 1;
+        padding: 14px 16px;
+        background-color: $mx-input-bg;
+        border: 1px solid $mx-card-border;
+        border-radius: 8px;
+        color: $mx-text-main;
+        font-size: 1rem;
+        transition: $mx-transition;
+        min-height: 300px;
+
+        &:focus {
+            outline: none;
+            border-color: $mx-accent-lightblue;
+        }
+    }
+
+    &__add-btn {
+        padding: 14px 24px;
+        background-color: $mx-accent-lightblue;
+        border: none;
+        border-radius: 8px;
+        color: $mx-bg-dark;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: $mx-transition;
+
+        &:hover {
+            background-color: lighten($mx-accent-lightblue, 10%);
+            box-shadow: 0 0 15px rgba($mx-accent-lightblue, 0.3);
+        }
+    }
+
+    &__success {
+        margin-top: 16px;
+        color: $mx-accent-green;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+// ==========================================================================
+// BLOCCO: ADMIN-SECTION & REPORT-GRID (Dashboard Riunione Lunedì)
+// ==========================================================================
+.admin-section {
+    &__title {
+        font-size: 1.75rem;
+        margin-bottom: 24px;
+    }
+
+    &__filters {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 32px;
+        background-color: $mx-card-bg;
+        padding: 16px 24px;
+        border-radius: 8px;
+        border: 1px solid $mx-card-border;
+        width: fit-content;
+    }
+
+    &__date-input {
+        padding: 10px 14px;
+        background-color: $mx-input-bg;
+        border: 1px solid $mx-card-border;
+        border-radius: 6px;
+        color: $mx-text-main;
+        font-size: 0.95rem;
+        outline: none;
+        
+        &::-webkit-calendar-picker-indicator {
+            filter: invert(1); // Rende l'icona del calendario bianca su tema dark
+        }
+    }
+
+    &__btn {
+        padding: 10px 20px;
+        background-color: $mx-accent-purple;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $mx-transition;
+
+        &:hover {
+            background-color: lighten($mx-accent-purple, 8%);
+        }
+    }
+}
+
+// La Griglia con CSS Grid che affianca le colonne dei dipendenti
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+    
+    .no-data {
+        grid-column: 1 / -1;
+        color: $mx-text-muted;
+        font-style: italic;
+    }
+}
+
+// ELEMENTI DELLE COLONNE DIPENDENTI
+.employee-column {
+    background-color: $mx-card-bg;
+    border: 1px solid $mx-card-border;
+    border-radius: $mx-radius;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+
+    &__name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: $mx-accent-lightblue;
+        margin-bottom: 20px;
+        border-bottom: 2px solid rgba($mx-accent-lightblue, 0.2);
+        padding-bottom: 8px;
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__item {
+        background-color: rgba(15, 23, 42, 0.4);
+        border-left: 3px solid $mx-accent-purple;
+        padding: 12px 14px;
+        border-radius: 0 6px 6px 0;
+    }
+
+    &__date {
+        display: block;
+        font-size: 0.75rem;
+        color: $mx-text-muted;
+        font-weight: 600;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba($mx-text-main, 0.9);
+    }
+}
